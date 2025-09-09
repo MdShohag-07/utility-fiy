@@ -1,0 +1,323 @@
+/* resources/css/app.css */
+
+/* ========================================= */
+/* === Font Imports (MUST BE FIRST) === */
+/* ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ========================================= */
+/* === Tailwind Directives === */
+/* ========================================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================= */
+/* === Base Styles & Variables === */
+/* ========================================= */
+:root {
+    /* Core Palette (Adjust to match Spectrum if needed) */
+    --primary-color: #005eb8; /* Example Blue */
+    --secondary-color: #8dc63f;
+    --accent-color: #00a9e0;
+    --dark-color: #333333; /* Darker text often used */
+    --medium-gray: #666666; /* Medium text */
+    --light-gray: #f4f4f4; /* Backgrounds */
+    --border-color: #e1e1e1; /* Borders */
+    --white-color: #fff;
+    --danger-color: #e74c3c;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --spectrum-dark-blue: #041E42; /* Example for footer & new header */
+    --spectrum-text-light: #f0f0f0; /* Example for footer text */
+
+    /* Theme Variables */
+    --header-text: var(--white-color); /* Set header text to white */
+    --footer-bg: var(--spectrum-dark-blue);
+    --footer-text: var(--spectrum-text-light);
+
+    --font-primary: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+    --container-max-width: 1250px;
+    --border-radius: 4px; /* Sharper radius */
+    --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.06);
+    --box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --box-shadow-heavy: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --transition-speed-fast: 0.2s ease-out;
+    --transition-speed-normal: 0.3s ease-in-out;
+}
+
+/* --- Global Resets & Defaults --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* Base Body Styles */
+body { font-family: var(--font-primary); font-size: var(--base-font-size); line-height: 1.6; color: var(--dark-color); background-color: var(--white-color); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0.7em; line-height: 1.3; font-weight: 600; color: #111; }
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 4vw, 2rem); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.3rem); font-weight: 600; }
+h4 { font-size: 0.9rem; text-transform: uppercase; color: #555; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.5px; }
+p { margin-bottom: 1.2em; color: #555; }
+a { color: var(--primary-color); text-decoration: none; transition: color var(--transition-speed-normal); }
+a:hover { color: var(--accent-color); }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: var(--container-max-width); margin: 0 auto; padding: 0 25px; }
+.container-fluid { width: 100%; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+
+/* --- General Button Styles (Adjusted for Spectrum-like feel) --- */
+.btn { display: inline-block; padding: 12px 28px; border: 1px solid transparent; border-radius: 4px; font-size: 0.95rem; font-weight: 500; cursor: pointer; text-align: center; transition: all var(--transition-speed-fast); text-decoration: none; line-height: 1.4; }
+.btn i { margin-left: 8px; }
+.btn:hover { filter: brightness(95%); }
+.btn:active { filter: brightness(90%); transform: scale(0.98); }
+.btn-primary { background-color: var(--primary-color); color: var(--white-color); border-color: var(--primary-color); }
+.btn-primary:hover { background-color: #004a9a; border-color: #004a9a; }
+.btn-secondary { background-color: var(--secondary-color); color: var(--white-color); border-color: var(--secondary-color); }
+.btn-secondary:hover { filter: brightness(90%); }
+.btn-outline-primary { border-color: var(--primary-color); color: var(--primary-color); background-color: transparent;}
+.btn-outline-primary:hover { background-color: #e6f0ff; }
+.btn-block { display: block; width: 100%; }
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 4px; }
+.btn-xs { padding: 0.25rem 0.6rem; font-size: 0.75rem; border-radius: 4px; }
+
+/* General Form Styles */
+.form-group { margin-bottom: 20px; }
+.form-group label, .form-label { display: block; margin-bottom: 6px; font-weight: 500; color: var(--dark-color); font-size: 0.9rem; }
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="password"], .form-group input[type="url"], .form-group input[type="number"], .form-group textarea, .form-group select,
+.form-control { width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast); background-color: #fff;}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus,
+.form-control:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.15); background-color: #fff;}
+.form-group input.input-error, .form-group textarea.input-error, .form-group select.input-error,
+.form-control.input-error { border-color: var(--danger-color, #e74c3c); }
+.password-wrapper { position: relative; }
+.toggle-password { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); background: none; border: none; color: var(--medium-gray); cursor: pointer; font-size: 1.2rem; padding: 0; }
+.form-links { display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 0.9rem; }
+.form-links a:hover { text-decoration: underline; }
+.error-message { color: var(--danger-color); font-size: 0.85rem; margin-top: 4px; display: block;}
+
+
+/* ========================================= */
+/* === START: Public Site Specific Styles === */
+/* ========================================= */
+
+/* --- Public Header (Spectrum Style) --- */
+.spectrum-header {
+    background-color: var(--spectrum-dark-blue); /* Use the dark footer color */
+    color: var(--white-color); /* Default text to white */
+    border-bottom: 1px solid #083369; /* Slightly lighter border */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.5rem 0;
+}
+.header-container { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+.header-logo img { max-height: 28px; display: block; filter: /* filter: brightness(0) invert(1); */ /* REMOVE THIS LINE */ }
+.header-right-actions { display: flex; align-items: center; gap: 1.5rem; }
+.utility-nav ul { display: flex; gap: 1.25rem; }
+.utility-nav a { font-size: 0.8rem; color: rgba(255, 255, 255, 0.85); text-decoration: none; font-weight: 400; }
+.utility-nav a:hover { color: var(--white-color); text-decoration: underline; }
+.main-actions { display: flex; align-items: center; gap: 0.6rem; }
+.action-button { background: none; border: none; color: rgba(255, 255, 255, 0.85); font-size: 1.1rem; cursor: pointer; padding: 0.4rem; line-height: 1; transition: color var(--transition-speed-fast); }
+.action-button:hover { color: var(--white-color); }
+.language-switcher-container button { font-size: 0.85rem; font-weight: 500; color: rgba(255, 255, 255, 0.85); }
+.language-switcher-container i { font-size: 0.6rem; margin-left: 0.3rem; }
+.user-button i { font-size: 1.6rem; color: rgba(255, 255, 255, 0.85); }
+.user-button:hover i { color: var(--white-color); }
+.mobile-nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--white-color); cursor: pointer; padding: 0.4rem; }
+
+/* --- Public User Dropdown (Keep if needed, style as needed) --- */
+/* Styles for the dropdown component itself (can be reused) */
+/* If you use Tailwind classes via content-classes prop primarily, these might not be needed */
+.themed-dropdown-panel { /* Example: background-color: white; border: 1px solid #ccc; */ }
+.themed-dropdown-panel .dropdown-link-item { /* Example: color: #333; padding: 8px 12px; */ }
+/* ... */
+
+
+/* --- New Homepage Sections (Spectrum Style) --- */
+.account-section { padding: 3rem 0; background-color: var(--white-color); border-bottom: 1px solid var(--border-color);}
+.internet-section { padding: 4rem 0; position: relative; background-color: #fff; background-size: cover; background-position: center; color: var(--dark-color); /* Changed to white background */ border-bottom: 1px solid var(--border-color); }
+.internet-section .container { position: relative; z-index: 10; }
+.internet-section-text h2 { color: #111; }
+.internet-section-text p { color: #555; }
+.internet-section-text .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--white-color); } /* Ensure button style fits */
+.internet-section-text .btn-primary:hover { background-color: #004a9a; border-color: #004a9a; }
+
+
+/* --- Public Footer (Spectrum Style) --- */
+.spectrum-footer { background: var(--footer-bg); color: var(--footer-text); padding: 50px 0 20px 0; font-size: 0.85rem; }
+.footer-nav-columns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+@media (min-width: 768px) { .footer-nav-columns { grid-template-columns: repeat(3, 1fr); } }
+.footer-nav-col h4 { font-size: 0.9rem; font-weight: 600; color: var(--white-color); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-nav-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-nav-col ul li { margin-bottom: 0.7rem; }
+.footer-nav-col ul li a { color: var(--footer-text); text-decoration: none; }
+.footer-nav-col ul li a:hover { color: var(--white-color); text-decoration: underline; }
+.footer-icon-links li a { display: flex; align-items: center; gap: 0.75rem; }
+.footer-icon-links li a i { color: var(--accent-color); width: 16px; text-align: center; font-size: 1rem; }
+.footer-social-icons { margin-top: 1.5rem; display: flex; gap: 1rem; }
+.footer-social-icons a { color: var(--footer-text); font-size: 1.3rem; transition: color 0.2s, transform 0.2s; }
+.footer-social-icons a:hover { color: var(--white-color); transform: scale(1.1); }
+.footer-divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 2rem 0; }
+.footer-shop-services { padding-bottom: 2rem; }
+.footer-shop-services h4 { font-size: 0.9rem; font-weight: 600; color: var(--white-color); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-shop-services nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.footer-shop-services nav a { color: var(--footer-text); font-weight: 500; }
+.footer-shop-services nav a:hover { color: var(--white-color); text-decoration: underline; }
+.footer-bottom-section { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 1.5rem; text-align: center; }
+@media (min-width: 1024px) { .footer-bottom-section { flex-direction: row; justify-content: space-between; align-items: center; text-align: left; } }
+.footer-bottom-logo img { max-height: 25px; filter: brightness(0) invert(1); opacity: 0.8; margin-bottom: 1rem; }
+@media (min-width: 1024px) { .footer-bottom-logo img { margin-bottom: 0; } }
+.footer-bottom-links { font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); line-height: 1.5; }
+.footer-bottom-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; white-space: nowrap; margin: 0 0.5rem; }
+.footer-bottom-links a:hover { color: var(--white-color); text-decoration: underline; }
+.footer-bottom-links span { margin-right: 0.5rem; }
+.footer-wave-background { height: 80px; background-color: #0a3a7a; margin-top: -1px; /* Add SVG/Image here */ }
+
+/* === END: Public Site Specific Styles === */
+
+
+/* ========================================= */
+/* === START: Admin Area Styles === */
+/* ========================================= */
+/* ... Keep existing admin styles ... */
+body.admin-body { background-color: #f4f6f9; color: #333; } .admin-layout-wrapper { display: flex; min-height: 100vh; } .admin-sidebar { width: 250px; background-color: #343a40; color: #c2c7d0; flex-shrink: 0; display: flex; flex-direction: column; } .admin-main-content { flex-grow: 1; display: flex; flex-direction: column; } .admin-top-bar { background-color: #fff; border-bottom: 1px solid #dee2e6; padding: 0.5rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); } .admin-page-content { padding: 1.5rem; flex-grow: 1; } .sidebar-header { padding: 0.8rem; text-align: center; border-bottom: 1px solid #4f5962; } .sidebar-header img { max-height: 40px; display: inline-block; } .sidebar-nav ul { list-style: none; padding: 0.5rem 0; margin: 0; } .sidebar-nav li a { display: flex; align-items: center; padding: 0.75rem 1rem; color: #c2c7d0; text-decoration: none; font-size: 0.95rem; transition: background-color 0.2s ease, color 0.2s ease; border-radius: 4px; margin: 0.1rem 0.5rem; } .sidebar-nav li a:hover { background-color: #495057; color: #fff; } .sidebar-nav li a.active { background-color: var(--primary-color); color: #fff; font-weight: 500; } .sidebar-icon { width: 25px; text-align: center; margin-right: 0.75rem; font-size: 1.1em; } .sidebar-heading { padding: 0.75rem 1rem; font-size: 0.75rem; color: #888; text-transform: uppercase; font-weight: 600; margin-top: 0.5rem; } .sidebar-nav li.mt-auto { margin-top: auto; } .admin-user-menu { font-size: 0.9rem; } .admin-user-menu span { margin-right: 1rem; color: #555; } .admin-logout-link { color: var(--danger-color); text-decoration: none; font-weight: 500; } .admin-logout-link:hover { text-decoration: underline; } .page-title { font-size: 1.3rem; font-weight: 500; color: #444; }
+.widget-card { background-color: #fff; border-radius: var(--border-radius, 8px); margin-bottom: 1.5rem; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); border: 1px solid #e5e7eb; display: flex; flex-direction: column; overflow: hidden;} .widget-header { padding: 0.8rem 1.25rem; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; } .widget-header h3 { margin-bottom: 0; font-size: 1rem; font-weight: 600; display: flex; align-items: center; } .widget-header h3 i { font-size: 0.9em; margin-right: 0.5rem; } .widget-content { padding: 1.25rem; flex-grow: 1; } .widget-footer { padding: 0.75rem 1.25rem; background-color: #f9fafb; border-top: 1px solid #e5e7eb; display: flex; justify-content: flex-end; gap: 0.5rem;}
+.alert { border-radius: var(--border-radius); border-width: 1px; border-left-width: 4px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.9rem;} .alert-success { background-color: #f0fdf4; color: #16a34a; border-color: #bbf7d0; border-left-color: #22c55e;} .alert-danger { background-color: #fef2f2; color: #dc2626; border-color: #fecaca; border-left-color: #ef4444;} .alert-info { background-color: #eff6ff; color: #2563eb; border-color: #bfdbfe; border-left-color: #3b82f6;}
+
+/* ========================================= */
+/* === START: User Dashboard Layout & Sidebar === */
+/* Applies to homepage AND user dashboard pages */
+/* ========================================= */
+.user-dashboard-layout { display: flex; flex-wrap: nowrap; width: 100%; max-width: var(--container-max-width, 1250px); margin-left: auto; margin-right: auto; padding: 1rem 0; background-color: var(--white-color); min-height: calc(100vh - 140px); /* Adjust based on combined header/footer height */ }
+.user-dashboard-layout .dashboard-sidebar { width: 240px; flex-shrink: 0; padding: 1.5rem 1rem; background-color: #f8f9fa; border-right: 1px solid var(--border-color, #e5e7eb); }
+.user-dashboard-layout .dashboard-sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+.user-dashboard-layout .dashboard-sidebar nav ul li a { display: flex; align-items: center; padding: 0.7rem 0.75rem; margin-bottom: 0.25rem; font-size: 0.95rem; font-weight: 500; color: var(--dark-color); border-radius: 6px; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
+.user-dashboard-layout .dashboard-sidebar nav ul li a i { width: 25px; margin-right: 10px; text-align: center; color: var(--medium-gray); font-size: 1.1rem; }
+.user-dashboard-layout .dashboard-sidebar nav ul li a:hover { background-color: #e9ecef; color: var(--primary-color); }
+.user-dashboard-layout .dashboard-sidebar nav ul li a.active { background-color: var(--white-color); color: var(--primary-color); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #eee; }
+.user-dashboard-layout .dashboard-sidebar nav ul li a.active i { color: var(--primary-color); }
+.user-dashboard-layout .sidebar-divider { height: 1px; background-color: var(--border-color, #e5e7eb); margin: 1rem 0.5rem; }
+.user-dashboard-layout .dashboard-main-content { flex-grow: 1; padding: 1.5rem; background-color: var(--white-color); min-width: 0; }
+/* Specific overrides for homepage content area */
+.public-home-dashboard .dashboard-main-content { padding: 1.5rem; background-color: var(--light-gray); /* Changed padding back slightly */ }
+@media (max-width: 767px) { .public-home-dashboard .dashboard-main-content { padding: 1rem; } }
+.public-sidebar { /* Add specific styles only for homepage sidebar if needed */ }
+
+
+/* ========================================= */
+/* === START: Mobile Nav (User Dashboard) === */
+/* ========================================= */
+.mobile-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background-color: var(--white-color, #fff); border-top: 1px solid var(--border-color, #e5e7eb); box-shadow: 0 -2px 10px rgba(0,0,0,0.06); display: flex; justify-content: space-around; align-items: stretch; z-index: 900; } .mobile-nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; text-decoration: none; color: var(--medium-gray); padding: 4px 0; font-size: 0.7rem; transition: color 0.2s ease; position: relative; } .mobile-nav-item i { font-size: 1.3rem; margin-bottom: 2px; } .mobile-nav-item span { line-height: 1.2; } .mobile-nav-item.active { color: var(--primary-color); font-weight: 500; } .mobile-nav-item.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background-color: var(--primary-color); border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; } .mobile-nav-item:hover { color: var(--primary-color); } @media (min-width: 768px) { .mobile-bottom-nav.md\:hidden { display: none; } }
+
+
+/* ========================================= */
+/* === START: Billing & Services Page Content Styles === */
+/* Common styles for user dashboard pages if using .billing-section etc. */
+/* ========================================= */
+.billing-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color, #eee); }
+.billing-page-title { font-size: 1.75rem; font-weight: 600; color: var(--dark-color); margin: 0; padding: 0; border: none; }
+.billing-content-grid { display: flex; flex-direction: column; gap: 1.5rem; } @media (min-width: 768px) { .billing-content-grid { flex-direction: row; gap: 2rem; } } .billing-details-column { flex-grow: 1; display: flex; flex-direction: column; gap: 0rem; } .billing-ad-column { width: 100%; flex-shrink: 0; margin-top: 1.5rem; } @media (min-width: 768px) { .billing-ad-column { width: 300px; margin-top: 0;} } .billing-card, .billing-section { background-color: var(--white-color); border: 1px solid var(--border-color, #eee); border-radius: var(--border-radius); box-shadow: var(--box-shadow-light); overflow: hidden; margin-bottom: 1.5rem; } .billing-section { padding: 1rem 0; } .billing-section h2 { font-size: 1.1rem; font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem; padding: 0 1.5rem; } .billing-list { list-style: none; padding: 0; margin: 0; } .billing-list li:not(:last-child) .billing-list-item { border-bottom: 1px solid #f3f4f6; } .billing-list-item { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.5rem; text-decoration: none; color: var(--dark-color); transition: background-color 0.2s ease; } .billing-list-item:hover { background-color: #f8f9fa; } .billing-list-item .icon { font-size: 1.1rem; color: var(--primary-color); margin-right: 1rem; width: 20px; text-align: center; } .billing-list-item span { flex-grow: 1; font-size: 0.95rem; font-weight: 500; } .billing-list-item .arrow { font-size: 0.8rem; color: var(--medium-gray); } .statement-info { display: flex; flex-direction: column; flex-grow: 1; margin-right: 0.5rem;} .statement-info .service-type { font-weight: 500; font-size: 0.95rem; line-height: 1.3; } .statement-info .account-number { font-size: 0.8rem; color: var(--medium-gray); line-height: 1.3; } .sub-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6; } .sub-section-title { font-size: 0.8rem; font-weight: 600; color: var(--medium-gray); text-transform: uppercase; letter-spacing: 0.05em;} .billing-list.plain .billing-list-item { padding-top: 0.4rem; padding-bottom: 0.4rem; } .billing-list.plain .billing-list-item:hover { background: none; } .billing-list.plain span { font-weight: 400;} .support-link { display: inline-block; font-size: 0.95rem; font-weight: 500; color: var(--primary-color); text-decoration: none; padding: 0.2rem 0;} .support-link:hover { color: var(--secondary-color); text-decoration: underline;}
+/* Ad Styles */ .ad-banner-sidebar{background-color:var(--white-color);border:1px solid var(--border-color,#eee);border-radius:var(--border-radius);padding:1.5rem;box-shadow:var(--box-shadow-light)}.ad-banner-sidebar .ad-image img{max-width:100%;height:auto;border-radius:4px;margin-bottom:1rem}.ad-banner-sidebar .ad-text h3{font-size:1.1rem;color:var(--primary-color);margin-bottom:.5rem}.ad-banner-sidebar .ad-text p{font-size:.9rem;margin-bottom:1rem;color:var(--dark-color);line-height:1.5}.ad-banner-sidebar .ad-text .btn{display:block;width:100%;text-align:center;margin-bottom:.75rem}.ad-banner-sidebar .ad-text .ad-details-link{display:block;text-align:center;font-size:.85rem;color:var(--primary-color);text-decoration:underline}.offer-banner{background-color:#f0f6ff;border:1px solid #cce0ff;border-radius:var(--border-radius);margin-top:1.5rem;position:relative;overflow:hidden}.offer-badge{background-color:var(--primary-color);color:#fff;font-size:.75rem;font-weight:500;padding:3px 10px;border-radius:4px;position:absolute;top:10px;left:10px;z-index:1}.offer-content{display:flex;flex-direction:column;padding:1rem;padding-top:2rem}.offer-image{text-align:center;margin-bottom:1rem}.offer-image img{max-width:100%;height:auto;max-height:100px}.offer-text h3{font-size:1.1rem;font-weight:600;margin-bottom:.5rem;color:var(--dark-color)}.offer-text p{font-size:.9rem;margin-bottom:1rem;color:var(--medium-gray);line-height:1.4}.offer-text .btn{margin-bottom:.75rem}.offer-text .offer-details-link{display:block;text-align:center;font-size:.85rem;color:var(--primary-color);text-decoration:underline}@media (min-width:768px){.offer-banner.md\:hidden{display:none}}@media (min-width:480px){.offer-content{flex-direction:row;align-items:center;text-align:left}.offer-image{margin-bottom:0;margin-right:1rem;flex-shrink:0}.offer-image img{max-height:80px}.offer-text{flex-grow:1}}
+/* Billing card specifics */ .balance-card{padding:1.5rem;position:relative}.balance-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background-color: var(--primary-color); } .balance-amount { font-size: 2.5rem; font-weight: 600; color: var(--dark-color); line-height: 1.1; margin-bottom: 0.25rem; } .payment-status { font-size: 0.9rem; color: var(--medium-gray); margin-bottom: 1.25rem; } .make-payment-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 500; display: block; text-align: center;}
+/* Services page specific content styles */
+.service-status { font-size: 0.85rem; } .status-indicator { display: flex; align-items: center; font-weight: 500;} .status-connected { color: #16a34a; } .status-unknown { color: #6b7280; }
+
+/* --- Responsiveness --- */
+@media (max-width: 1024px) { /* Tablet */ body:not(.admin-body) .utility-nav { display: none; } body:not(.admin-body) .main-actions { gap: 0.5rem; } body:not(.admin-body) .action-button { padding: 0.3rem; } body:not(.admin-body) .mobile-nav-toggle { display: block; } .header-container { flex-wrap: wrap; } .header-right-actions { display: none; } /* Responsive Admin */ .admin-sidebar { width: 200px; } /* Responsive User Dashboard */ .user-dashboard-layout .dashboard-sidebar { width: 200px; padding: 1rem 0.5rem; } .user-dashboard-layout .dashboard-main-content { padding: 1rem; } .billing-ad-column { display: none; } }
+
+@media (max-width: 767px) { /* Mobile */ :root { --base-font-size: 15px; } .container { padding: 0 15px; } .logo img { max-height: 35px; } .header-container { padding: 0 15px; } .header-right-actions { display: none; } .mobile-nav-toggle { display: block; } .account-section, .internet-section { padding: 2rem 0; } .account-section .container, .internet-section .container { grid-template-columns: 1fr; gap: 1.5rem; text-align: center;} .account-image-content { display: block; margin-top: 1rem; } .account-text-content .flex { justify-content: center; } .internet-section { background-image: none !important; background-color: var(--dark-color) !important; } /* Remove bg image, force dark bg */ .internet-section-image { display: none; } /* Hide image on mobile */ .internet-section .container { grid-template-columns: 1fr; } .internet-section-text { text-align: center; } .internet-section-text .btn-primary { display: inline-block; width: auto;} /* Footer */ .footer-nav-columns { grid-template-columns: 1fr; } .footer-nav { justify-content: center; } .footer-main { gap: 30px; margin-bottom: 30px;} .footer-bottom-section { text-align: center; } .footer-bottom-links { justify-content: center; } .footer-bottom-links a { margin: 0.3rem 0.5rem; display: inline-block;} /* Responsive Admin */ .admin-sidebar { display: none; } .admin-layout-wrapper { display: block; } .admin-page-content { padding: 1rem; } .page-title { font-size: 1.2rem; } .admin-top-bar { padding: 0.5rem 1rem; } /* Responsive User Dashboard */ .user-dashboard-layout { display: block; padding: 0; } .user-dashboard-layout .dashboard-sidebar.hidden.md\:block { display: none; } .dashboard-main-content { width: 100%; padding: 1rem; padding-bottom: 70px; } .billing-content-grid { flex-direction: column; } .billing-ad-column.hidden.md\:block { display: block; width: 100%; margin-top: 1.5rem;} .offer-banner.md\:hidden { display: flex; } }
+
+
+/* === START: New Login Page Styles === */
+
+.login-page-wrapper {
+    /* Styles for the overall page background and centering */
+    background-color: #f0f4f8; /* Light blue/gray background like Spectrum */
+}
+
+.login-top-links {
+    /* Styles for "Leave Feedback" / "En español" */
+}
+
+.login-card {
+    /* Styles for the white login box */
+    max-width: 650px; /* Control max width */
+}
+
+.login-title {
+    /* Styles for "Sign In to Get Started" */
+    color: #111; /* Darker text */
+}
+
+.separator {
+    /* Styles for the '--- or ---' separator */
+}
+.separator hr {
+    border-top-width: 1px; /* Ensure border is visible */
+}
+
+.login-card .form-group label {
+    font-size: 0.85rem; /* Smaller labels */
+    font-weight: 500;
+    color: #555;
+}
+
+.login-card .form-group label .help-icon i {
+    font-size: 0.9rem; /* Adjust icon size */
+}
+
+.login-card .form-control {
+    padding: 10px 12px; /* Slightly less padding */
+    background-color: #fff;
+    border-color: #bbb; /* Slightly darker border than default */
+}
+.login-card .form-control:focus {
+     border-color: var(--primary-color);
+     box-shadow: 0 0 0 1px var(--primary-color); /* Subtle focus ring */
+}
+
+.login-card .password-wrapper .toggle-password {
+     font-size: 1.1rem; /* Adjust eye icon size */
+     color: var(--primary-color); /* Blue eye */
+}
+
+.login-card label[for="remember_me"] span {
+    color: #555;
+    font-size: 0.85rem;
+}
+.login-card label[for="remember_me"] input[type="checkbox"] {
+    border-radius: 3px; /* Slightly less rounded checkbox */
+    border-color: #bbb;
+}
+
+.login-card .btn-primary {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: var(--primary-color); /* Solid blue */
+}
+.login-card .btn-primary:hover {
+    background: #004a9a;
+}
+
+.login-footer-links {
+    /* Styles for the bottom legal links */
+}
+.login-footer-links a,
+.login-footer-links span {
+    color: #555;
+    margin: 0 0.3rem; /* Adjust spacing */
+    display: inline-block; /* Prevent awkward wrapping */
+    line-height: 1.6;
+}
+.login-footer-links a:hover {
+     color: var(--primary-color);
+}
+.login-footer-links p {
+    color: #777; /* Lighter copyright */
+    font-size: 0.75rem;
+}
+/* --- END OF FILE --- */
